@@ -1,0 +1,6 @@
+part_id,part_name,initial_stock,reorder_level,unit,bin_location,unit_cost_usd,category
+BRG-6205,Deep Groove Ball Bearing,2,5,Pieces,WH-A-01-2,18.50,Bearings
+MOT-001,Electric 3-Phase Motor 1.5kW,4,2,Pieces,WH-B-04-1,245.00,Motors
+BELT-010,Conveyor Timing Belt Neoprene,10,3,Pieces,WH-A-02-5,32.00,Transmission
+SEN-015,PT100 Temperature Sensor,3,4,Pieces,WH-C-01-3,85.00,Sensors
+FIL-020,High-Pressure Industrial Filter,12,5,Pieces,WH-B-02-2,42.00,Filtration
