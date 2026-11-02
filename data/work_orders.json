@@ -1,0 +1,9 @@
+[
+  {
+    "work_order_id": "WO-2026-0891",
+    "title": "Conveyor Drive Overhaul",
+    "equipment_ids": ["CNC-MILL-04", "CONV-LINE-B"],
+    "technician_id": "TECH-702",
+    "status": "OPEN"
+  }
+]

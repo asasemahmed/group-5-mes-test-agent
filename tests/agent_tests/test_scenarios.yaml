@@ -1,0 +1,20 @@
+# Natural-language test definitions for the agent (see README section 5).
+- id: SP-01
+  name: Insufficient Stock Issue
+  instruction: Attempt to issue 3 bearings (BRG-6205) to maintenance job WO-2026-0891 and verify the resulting inventory balance.
+  expected:
+    issue_accepted: false
+    stock_after: 2
+
+- id: SP-02
+  name: Low-Stock Warning Trigger
+  instruction: Navigate to the spare parts inventory, locate sensor SEN-015, and verify whether the low-stock warning is visible.
+  expected:
+    low_stock_warning: true
+
+- id: SP-03
+  name: Accurate Stock Balance Update
+  instruction: Issue 2 conveyor belts (BELT-010) to maintenance repair line 3 and verify the updated stock balance.
+  expected:
+    issue_accepted: true
+    stock_after: 8
