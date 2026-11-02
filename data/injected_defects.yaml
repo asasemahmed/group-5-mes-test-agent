@@ -1,0 +1,10 @@
+# Defects seeded into the MES for the benchmark (see README section 5).
+- id: DEF-01
+  scenario: SP-01
+  description: Over-issue is accepted and the stock balance goes negative.
+- id: DEF-02
+  scenario: SP-02
+  description: Low-stock warning does not render when stock is below the reorder level.
+- id: DEF-03
+  scenario: SP-03
+  description: Stock is deducted twice on one issue (10 becomes 6).

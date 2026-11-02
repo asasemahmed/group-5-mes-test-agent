@@ -1,0 +1,8 @@
+[project]
+name = "group-5-mes-test-agent"
+version = "0.1.0"
+description = "LLM computer-use agent for end-to-end testing of MES spare-parts workflows"
+requires-python = ">=3.10"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
