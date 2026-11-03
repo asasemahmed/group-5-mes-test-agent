@@ -13,6 +13,11 @@
   <img src="https://img.shields.io/badge/License-MIT-informational?style=for-the-badge" alt="License" />
 </p>
 
+<p align="center">
+  <img src="docs/images/system-overview.png" alt="System overview: inputs (test steps, business rules, OpenMES) go into the AI test agent, which acts and judges; outputs are a verdict, evidence and metrics. Factors on top, requirements below." width="900" />
+</p>
+<p align="center"><em>System overview: what goes in, what the agent does, what comes out, and what it depends on.</em></p>
+
 ---
 
 ## 📑 Table of Contents
