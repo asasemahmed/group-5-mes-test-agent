@@ -5,5 +5,12 @@
     "equipment_ids": ["CNC-MILL-04", "CONV-LINE-B"],
     "technician_id": "TECH-702",
     "status": "OPEN"
+  },
+  {
+    "work_order_id": "WO-2026-0903",
+    "title": "Repair Line 3 Belt Replacement",
+    "equipment_ids": ["CONV-LINE-3"],
+    "technician_id": "TECH-715",
+    "status": "OPEN"
   }
 ]
