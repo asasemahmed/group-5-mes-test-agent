@@ -1,0 +1,20 @@
+# Settings of the published (scored) experiment, design section 6.8.
+# A run started with --scored takes its settings from this file only and refuses overrides.
+# Model and observation mode come from the smoke test of 2026-11-27 (docs/evaluation_protocol.md).
+
+model: z-ai/glm-5.3-flash
+observation_mode: image
+temperature: 0
+
+approaches:
+  playwright_baseline: {step_retries: 0}
+  pure_agent: {step_retries: 0}
+  agent_with_verification: {step_retries: 3}
+
+scenarios: [SP-01, SP-02, SP-03]
+states: [clean, defect]
+repeats: 5            # 3 approaches x 3 scenarios x 2 states x 5 = 90 runs
+
+limits:
+  agent_max_steps: 20
+  run_timeout_s: 180

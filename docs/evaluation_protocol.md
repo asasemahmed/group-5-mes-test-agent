@@ -9,7 +9,7 @@ TODO: number of runs per scenario and how the MES is reset between runs.
 
 ## Model (plan step 0.2)
 
-Checked with `python -m src.llm.smoke --info-only` on 2026-11-28, from OpenRouter's public model list:
+Checked with `python -m src.llm.smoke --info-only` on 2026-11-27, from OpenRouter's public model list:
 
 | Item | Value |
 |---|---|
@@ -18,6 +18,13 @@ Checked with `python -m src.llm.smoke --info-only` on 2026-11-28, from OpenRoute
 | Price per 1M tokens | input $0.15, output $0.50 |
 | JSON response format | listed as supported |
 
-Still open: the two paid probes (`python -m src.llm.smoke` with `OPENROUTER_API_KEY` in `.env`).
-They decide the observation mode (image or text), and whether the JSON response format is
-accepted in practice. The results then go here and into `data/scored_experiment.yaml`.
+Paid probes, `python -m src.llm.smoke` on 2026-11-27 (saved in `reports/smoke/`):
+
+| Probe | Result | Latency | Tokens in/out | Cost |
+|---|---|---|---|---|
+| Image (screenshot + element list, code word only in the image) | PASS, chose the right element and read the word | 1.8 s | 496 / 94 | $0.000091 |
+| Text only (element list + page text) | PASS, chose the right element | 0.46 s | 127 / 19 | $0.000020 |
+
+- The JSON response format was accepted in both probes.
+- OpenRouter returns the cost of each call in its usage data.
+- Decision: observation mode **image**. Written into `data/scored_experiment.yaml`.
