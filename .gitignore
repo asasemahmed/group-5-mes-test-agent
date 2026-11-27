@@ -38,11 +38,8 @@ playwright-report/
 blob-report/
 playwright/.cache/
 
-# Test Reports, Logs & Screenshots
-reports/*.png
-reports/*.jpg
-reports/*.log
-reports/run_*
+# Test reports (run records, screenshots, databases) stay local
+reports/*
 !reports/.gitkeep
 
 # IDE & OS
