@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block title %}Issue result{% endblock %}
+{% block content %}
+<h1>Issue result</h1>
+<p class="result {{ 'result-ok' if issue.accepted else 'result-rejected' }}" role="status" data-testid="issue-result-message">{{ issue.message }}</p>
+<p class="actions">
+  <a class="button" href="/inventory">Go to inventory</a>
+  <a class="button button-secondary" href="/issue">Issue another part</a>
+</p>
+{% endblock %}

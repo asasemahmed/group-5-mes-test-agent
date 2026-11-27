@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block title %}Home{% endblock %}
+{% block content %}
+<h1>Spare parts and maintenance</h1>
+<p class="lead">Manage the spare-parts store and issue parts to maintenance work orders.</p>
+<ul class="tiles">
+  <li><a href="/inventory"><strong>Inventory</strong><span>Parts, stock and reorder levels</span></a></li>
+  <li><a href="/work-orders"><strong>Work orders</strong><span>Open maintenance jobs</span></a></li>
+  <li><a href="/movements"><strong>Movements</strong><span>Every part issued to a job</span></a></li>
+</ul>
+{% endblock %}

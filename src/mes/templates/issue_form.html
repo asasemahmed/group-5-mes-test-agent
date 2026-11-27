@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block title %}Issue spare part{% endblock %}
+{% block content %}
+<h1>Issue spare part</h1>
+<form id="issue-form" class="card form" method="post" action="/issue">
+  <div class="field">
+    <label for="work_order_id">Work order</label>
+    <select id="work_order_id" name="work_order_id" required>
+      <option value="">Choose a work order</option>
+      {% for wo in work_orders %}
+      <option value="{{ wo.work_order_id }}" {% if wo.work_order_id == selected_work_order %}selected{% endif %}>{{ wo.work_order_id }} {{ wo.title }}</option>
+      {% endfor %}
+    </select>
+  </div>
+  <div class="field">
+    <label for="part_id">Spare part</label>
+    <select id="part_id" name="part_id" required>
+      <option value="">Choose a part</option>
+      {% for p in parts %}
+      <option value="{{ p.part_id }}" {% if p.part_id == selected_part %}selected{% endif %}>{{ p.part_id }} {{ p.part_name }}</option>
+      {% endfor %}
+    </select>
+  </div>
+  <div class="field">
+    <label for="qty">Quantity</label>
+    <input id="qty" name="qty" type="number" min="1" step="1" required inputmode="numeric">
+  </div>
+  <button type="submit" id="issue-submit">Issue part</button>
+</form>
+{% endblock %}

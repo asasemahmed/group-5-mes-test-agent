@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block title %}Inventory{% endblock %}
+{% block content %}
+<h1>Inventory</h1>
+<form class="search" method="get" action="/inventory" role="search">
+  <label for="search">Search parts</label>
+  <input id="search" name="q" type="search" value="{{ q }}" placeholder="Part id or name">
+  <button type="submit" id="search-submit">Search</button>
+</form>
+<table id="parts-table">
+  <caption>Spare parts in store</caption>
+  <thead>
+    <tr><th scope="col">Part</th><th scope="col">Name</th><th scope="col" class="num">Stock</th><th scope="col" class="num">Reorder level</th><th scope="col">Bin</th><th scope="col">Status</th></tr>
+  </thead>
+  <tbody>
+    {% for p in parts %}
+    <tr id="part-{{ p.part_id }}" data-testid="part-row-{{ p.part_id }}">
+      <td><a href="/parts/{{ p.part_id }}">{{ p.part_id }}</a></td>
+      <td>{{ p.part_name }}</td>
+      <td class="num" data-testid="stock-{{ p.part_id }}">{{ p.stock_qty }}</td>
+      <td class="num">{{ p.reorder_level }}</td>
+      <td>{{ p.bin_location }}</td>
+      <td>{% if p.low_stock %}<span class="badge badge-low" data-testid="low-stock-badge-{{ p.part_id }}">Low stock</span>{% else %}<span class="badge badge-ok">OK</span>{% endif %}</td>
+    </tr>
+    {% else %}
+    <tr><td colspan="6">No parts match “{{ q }}”.</td></tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

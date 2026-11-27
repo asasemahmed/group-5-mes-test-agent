@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}Movements{% endblock %}
+{% block content %}
+<h1>Movements</h1>
+{% if movements %}
+<table id="movements-table">
+  <caption>Parts issued to work orders, newest first</caption>
+  <thead><tr><th scope="col">Time</th><th scope="col">Part</th><th scope="col">Work order</th><th scope="col" class="num">Quantity</th><th scope="col">Type</th></tr></thead>
+  <tbody>
+    {% for m in movements %}
+    <tr data-testid="movement-row-{{ m.id }}">
+      <td>{{ m.created_at[:19].replace("T", " ") }}</td>
+      <td><a href="/parts/{{ m.part_id }}">{{ m.part_id }}</a></td>
+      <td><a href="/work-orders/{{ m.work_order_id }}">{{ m.work_order_id }}</a></td>
+      <td class="num">{{ m.qty }}</td>
+      <td>{{ m.movement_type }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% else %}
+<p class="muted">No movements yet.</p>
+{% endif %}
+{% endblock %}

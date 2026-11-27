@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}Mini MES{% endblock %} · Mini MES</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="/">Mini MES</a>
+    <nav aria-label="Main">
+      <a href="/inventory" {% if active == "inventory" %}aria-current="page"{% endif %}>Inventory</a>
+      <a href="/work-orders" {% if active == "work_orders" %}aria-current="page"{% endif %}>Work orders</a>
+      <a href="/movements" {% if active == "movements" %}aria-current="page"{% endif %}>Movements</a>
+      <a href="/issue" {% if active == "issue" %}aria-current="page"{% endif %}>Issue spare part</a>
+    </nav>
+  </header>
+  <main>
+    {% block content %}{% endblock %}
+  </main>
+</body>
+</html>

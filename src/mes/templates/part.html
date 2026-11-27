@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block title %}{{ part.part_id }}{% endblock %}
+{% block content %}
+<p class="crumbs"><a href="/inventory">Inventory</a> / {{ part.part_id }}</p>
+<h1>{{ part.part_id }} · {{ part.part_name }}</h1>
+<section id="part-{{ part.part_id }}" data-testid="part-detail-{{ part.part_id }}">
+  <dl class="facts">
+    <div><dt>Stock</dt><dd data-testid="stock-{{ part.part_id }}">{{ part.stock_qty }} {{ part.unit }}</dd></div>
+    <div><dt>Reorder level</dt><dd>{{ part.reorder_level }}</dd></div>
+    <div><dt>Bin</dt><dd>{{ part.bin_location }}</dd></div>
+    <div><dt>Category</dt><dd>{{ part.category }}</dd></div>
+    <div><dt>Status</dt><dd>{% if part.low_stock %}<span class="badge badge-low" data-testid="low-stock-badge-{{ part.part_id }}">Low stock</span>{% else %}<span class="badge badge-ok">OK</span>{% endif %}</dd></div>
+  </dl>
+</section>
+<p><a class="button" id="issue-link" href="/issue?part={{ part.part_id }}">Issue to work order</a></p>
+<h2>Recent movements</h2>
+{% if movements %}
+<table>
+  <thead><tr><th scope="col">Time</th><th scope="col">Work order</th><th scope="col" class="num">Quantity</th><th scope="col">Type</th></tr></thead>
+  <tbody>
+    {% for m in movements %}
+    <tr><td>{{ m.created_at[:19].replace("T", " ") }}</td><td><a href="/work-orders/{{ m.work_order_id }}">{{ m.work_order_id }}</a></td><td class="num">{{ m.qty }}</td><td>{{ m.movement_type }}</td></tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% else %}
+<p class="muted">No movements yet.</p>
+{% endif %}
+{% endblock %}

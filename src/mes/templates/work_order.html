@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}{{ work_order.work_order_id }}{% endblock %}
+{% block content %}
+<p class="crumbs"><a href="/work-orders">Work orders</a> / {{ work_order.work_order_id }}</p>
+<h1>{{ work_order.work_order_id }} · {{ work_order.title }}</h1>
+<dl class="facts">
+  <div><dt>Status</dt><dd>{{ work_order.status }}</dd></div>
+  <div><dt>Equipment</dt><dd>{{ work_order.equipment_ids | join(", ") }}</dd></div>
+  <div><dt>Technician</dt><dd>{{ work_order.technician_id }}</dd></div>
+</dl>
+{% if work_order.status == "OPEN" %}
+<p><a class="button" id="issue-to-work-order" href="/issue?work_order={{ work_order.work_order_id }}">Issue spare part</a></p>
+{% endif %}
+<h2>Parts issued to this work order</h2>
+{% if movements %}
+<table>
+  <thead><tr><th scope="col">Time</th><th scope="col">Part</th><th scope="col" class="num">Quantity</th></tr></thead>
+  <tbody>
+    {% for m in movements %}
+    <tr><td>{{ m.created_at[:19].replace("T", " ") }}</td><td><a href="/parts/{{ m.part_id }}">{{ m.part_id }}</a></td><td class="num">{{ m.qty }}</td></tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% else %}
+<p class="muted">No parts issued yet.</p>
+{% endif %}
+{% endblock %}
