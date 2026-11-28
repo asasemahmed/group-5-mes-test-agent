@@ -1,0 +1,40 @@
+# Development scenarios: NOT scored. The agent's prompt and observation format are tuned
+# on these only (design section 8). They use parts that no scored scenario uses.
+- id: DEV-01
+  name: Motor Over-Issue
+  defect: DEF-01
+  precondition: MOT-001 has 4 pieces in stock.
+  instruction: Try to issue 5 electric motors (MOT-001) to maintenance job WO-2026-0891 and check the stock balance afterwards.
+  action:
+    type: issue
+    part_id: MOT-001
+    qty: 5
+    work_order_id: WO-2026-0891
+  expected:
+    issue_accepted: false
+    stock_after: 4
+
+- id: DEV-02
+  name: Valve Low-Stock Warning
+  defect: DEF-02
+  precondition: VLV-030 has 1 piece in stock; its reorder level is 3.
+  instruction: Open the spare parts inventory, find the pneumatic valve VLV-030, and check whether it shows a low-stock warning.
+  action:
+    type: inspect
+    part_id: VLV-030
+  expected:
+    low_stock_warning: true
+
+- id: DEV-03
+  name: Filter Issue Balance
+  defect: DEF-03
+  precondition: FIL-020 has 12 pieces in stock.
+  instruction: Issue 3 hydraulic filters (FIL-020) to the repair line 3 job and check the new stock balance.
+  action:
+    type: issue
+    part_id: FIL-020
+    qty: 3
+    work_order_id: WO-2026-0903
+  expected:
+    issue_accepted: true
+    stock_after: 9

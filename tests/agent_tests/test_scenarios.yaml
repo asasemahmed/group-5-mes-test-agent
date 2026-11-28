@@ -1,20 +1,38 @@
 # Natural-language test definitions for the agent (see README section 5).
+# A tester (script or agent) gets only the public part: precondition and instruction.
+# `action` and `expected` are private: the evidence check and the oracle use them.
 - id: SP-01
   name: Insufficient Stock Issue
+  precondition: BRG-6205 has 2 pieces in stock.
   instruction: Attempt to issue 3 bearings (BRG-6205) to maintenance job WO-2026-0891 and verify the resulting inventory balance.
+  action:
+    type: issue
+    part_id: BRG-6205
+    qty: 3
+    work_order_id: WO-2026-0891
   expected:
     issue_accepted: false
     stock_after: 2
 
 - id: SP-02
   name: Low-Stock Warning Trigger
+  precondition: SEN-015 has 3 pieces in stock; its reorder level is 4.
   instruction: Navigate to the spare parts inventory, locate sensor SEN-015, and verify whether the low-stock warning is visible.
+  action:
+    type: inspect
+    part_id: SEN-015
   expected:
     low_stock_warning: true
 
 - id: SP-03
   name: Accurate Stock Balance Update
+  precondition: BELT-010 has 10 pieces in stock.
   instruction: Issue 2 conveyor belts (BELT-010) to maintenance repair line 3 and verify the updated stock balance.
+  action:
+    type: issue
+    part_id: BELT-010
+    qty: 2
+    work_order_id: WO-2026-0903
   expected:
     issue_accepted: true
     stock_after: 8
