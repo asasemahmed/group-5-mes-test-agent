@@ -726,8 +726,8 @@ before that step counts as done.
 
 | Point | Severity | What is still open | Settle in |
 |---|---|---|---|
-| Seeing a part in text-only mode | high | The part's id also appears in the issue form's dropdown. Only the inventory row or the detail page, with the warning state, may count as "the tester saw the part". | 2.4, 5.5 |
-| Looking at the balance in text-only mode | high | The result page names the part but not its stock. Only a sent row or detail page that contains the stock value may count as "looked at the balance after submitting". | 2.4, 5.6 |
+| Seeing a part in text-only mode | high | Settled in 2.4: only the part's inventory row or detail section counts, never the dropdown or the result page; in text mode the whole row, with stock and status, must be in the sent text (`src/harness/evidence.py`). The agent loop must use it in 5.5. | 5.5 |
+| Looking at the balance in text-only mode | high | Settled in 2.4 by the same rule: a sighting after the submission always includes the stock value; the result page does not count. The agent runs must use it in 5.6. | 5.6 |
 | Clean-up of a stuck run that already has a verdict | high | `recover` must check every registered worker, also when a verdict exists, and keep that verdict. The worker must be registered before it starts its own children. | 4.2, 6.3 |
 | One counting claim from the oracle | high | When several checks fail (DEF-02 fails two), the oracle needs a fixed rule for which single claim counts, independent of the order of checks and of which defect is on. | 3.2, 6.1 |
 | Files changing during a benchmark | high | Scored workers should run from one frozen copy of the hashed inputs, or the experiment must become ineligible when a file changes between workers. | 6.2 |
